@@ -312,7 +312,7 @@ Las contribuciones son bienvenidas. Para cambios importantes:
 
 ## Licencia
 
-Este proyecto está bajo la licencia MIT. Ver archivo `LICENSE` para más detalles.
+Este proyecto está bajo la licencia MIT.
 
 ---
 
@@ -325,7 +325,7 @@ Desarrollado como parte de proyectos de **IBM Developer Skills Network - Data An
 ## Contacto & Soporte
 
 - **Email**: mariosoluciona15@gmail.com
-- **LinkedIn**: [Tu perfil](https://linkedin.com/in/tu-perfil)
+- **LinkedIn**: [Tu perfil](https://www.linkedin.com/in/mario-jos%C3%A9-moreno-ramirez-0a7274329/)
 
 ---
 
