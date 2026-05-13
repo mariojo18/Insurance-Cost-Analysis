@@ -75,6 +75,7 @@ Z=z.astype(float)
 pipe.fit(Z,y)
 ypipe=pipe.predict(Z)
 print(r2_score(y,ypipe))
+
 #*Model Refinament
 x_train, x_test,y_train,y_test = train_test_split(Z,y,test_size=0.2, random_state= 1)
 RidgeModel = Ridge(alpha=0.1)
