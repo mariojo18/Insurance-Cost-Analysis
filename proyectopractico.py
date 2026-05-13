@@ -2,7 +2,12 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression,LogisticRegression
+from sklearn.linear_model import LinearRegression,LogisticRegression,Ridge
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, PolynomialFeatures
+from sklearn.metrics import mean_squared_error,r2_score
+from sklearn.model_selection import cross_val_score, train_test_split
+
 path = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DA0101EN-Coursera/medical_insurance_dataset.csv'
 
 #*Data ingestion
@@ -56,3 +61,30 @@ y=df['smoker']
 lrcs=LogisticRegression()
 lrcs.fit(x,y)
 print(lrcs.score(x,y)) 
+
+z=df[["age","gender","bmi","no_of_children","smoker","region"]]
+lr=LinearRegression()
+lr.fit(z,y)
+print(lr.score(z,y))
+
+Input=[('scale',StandardScaler()),
+        ('polynomial',PolynomialFeatures(include_bias=False)),
+        ('model',LinearRegression())]
+pipe=Pipeline(Input)
+Z=z.astype(float)
+pipe.fit(Z,y)
+ypipe=pipe.predict(Z)
+print(r2_score(y,ypipe))
+#*Model Refinament
+x_train, x_test,y_train,y_test = train_test_split(Z,y,test_size=0.2, random_state= 1)
+RidgeModel = Ridge(alpha=0.1)
+RidgeModel.fit(x_train,y_train)
+yhat= RidgeModel.predict(x_test)
+print(r2_score(y_test,yhat))
+
+pr=PolynomialFeatures(degree=2)
+x_test_pr=pr.fit_transform(x_test)
+x_train_pr=pr.fit_transform(x_train)
+RidgeModel.fit(x_train_pr,y_train)
+ynew=RidgeModel.predict(x_test_pr)
+print(r2_score(y_test,ynew))
