@@ -55,4 +55,4 @@ x=df[['charges']]
 y=df['smoker']
 lrcs=LogisticRegression()
 lrcs.fit(x,y)
-print(lrcs.score(x,y))
+print(lrcs.score(x,y)) 
